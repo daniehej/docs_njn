@@ -1,3 +1,5 @@
+# Nvidia Jetson Nano image recipe
+Guide to creating an image with various preinstalled packages for use in AAU.
 
 ## Steps
 
