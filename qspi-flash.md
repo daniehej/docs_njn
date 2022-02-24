@@ -1,8 +1,8 @@
 # Guide to Flashing QSPI-NOR on the Nvidia Jetson Nano Developer Kit
 
-Since Jetpack 4.5, the boot firmware is moved from the SD card to the internal QSPI-NOR flash memory. Among other things, this enables the Jetson Nano to boot from USB. However, this means that the QSPI-NOR must be flashed in order to boot the new SD card format.
+Since Jetpack 4.5, the boot firmware is moved from the SD card to the internal QSPI-NOR flash memory. Among other things, this enables the Jetson Nano to boot from USB. However, if the device has never booted a Jetpack 4.5 or higher version image this means that the QSPI-NOR must be flashed in order to boot the new SD card format.
 
-The QSPI bootloader needs to be updated for Jetpack ≥ 4.5 to boot. When using an original image, this will automatically be done upon first boot, after which the files for teh update are deleted. In order to distribute our own image, we therefore have to flash the QSPI-NOR via the Jetson Nano recovery mode.
+The QSPI bootloader needs to be updated for Jetpack ≥ 4.5 to boot. This only needs to be done once. When using an original image, this will automatically be done upon first boot, after which the files for teh update are deleted. In order to distribute our own image, we therefore have to flash the QSPI-NOR via the Jetson Nano recovery mode.
 
 After flashing QSPI-NOR, the Jetson Nano will no longer be able to boot Jetpack versions < 4.5.
 
