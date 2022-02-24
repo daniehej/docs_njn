@@ -11,3 +11,6 @@ Guide to flashing QSPI-NOR in order to boot JetPack ≥ 4.5.
 
 ### [AAU Image Recipe](image-recipe.md)
 Guide to creating an image with various preinstalled packages for use in AAU.
+
+### [Useful Links](useful-links.md)
+List of useful links to external websites.
