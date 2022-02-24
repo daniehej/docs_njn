@@ -37,7 +37,9 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 7. Install nomachine
 
-    - Download [local](https://www.nomachine.com/download/download&id=111&s=ARM)
+    Note: Replace version in commands with the most recent version.
+
+    - Download the ARMv8 (arm64) version [Nomachine ARMv8 Download](https://www.nomachine.com/download/download&id=112&s=ARM)
 
     - scp file to device: `scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.`
 
@@ -47,9 +49,9 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 8. Connect with nomachine
 
-    - Install client [Nomachine client](https://www.nomachine.com/download/linux&id=1)
+    - Install client on local computer [Nomachine Client Download](https://www.nomachine.com/download/linux&id=1)
 
-    - Connect to `192.168.55.1`
+    - Connect to the nano on default IP `192.168.55.1`
 
 9. Add Danish keyboard and adjust time zone
 
