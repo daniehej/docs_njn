@@ -5,7 +5,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 1. Get [the newest Jetson Nano Image](https://developer.nvidia.com/embedded/downloads).
 
-2. Use BalenaEtcher to flash the image, see e.g. these [instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write). Flash and verify card.
+2. Use BalenaEtcher to flash the image, see e.g. these instructions [Getting Started with Jetson Nano Developer Kit](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write). Flash and verify card.
 
 3. Add cables including Ethernet cable for installing. Insert into NJN and start-up. 
 
@@ -61,7 +61,8 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 10. Install jetson-inference
 
-    - Follow the steps [here](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md). Use default values but add pytorch for python3.
+    - Follow the steps on [Hello AI World: jetson-inference](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md). Use default values but add pytorch for python3.
+
 
 11. Prevent keyring daemon from starting:
 
