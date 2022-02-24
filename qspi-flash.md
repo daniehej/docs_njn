@@ -2,7 +2,7 @@
 
 Since Jetpack 4.5, the boot firmware is moved from the SD card to the internal QSPI-NOR flash memory. Among other things, this enables the Jetson Nano to boot from USB. However, this means that the QSPI-NOR must be flashed in order to boot the new SD card format.
 
-The QSPI bootloader needs to be updated for Jetpack > 4.4 to boot. When using an original image, this will automatically be done upon first boot, after which the files for teh update are deleted. In order to distribute our own image, we therefore have to flash the QSPI-NOR.
+The QSPI bootloader needs to be updated for Jetpack ≥ 4.5 to boot. When using an original image, this will automatically be done upon first boot, after which the files for teh update are deleted. In order to distribute our own image, we therefore have to flash the QSPI-NOR via the Jetson Nano recovery mode.
 
 After flashing QSPI-NOR, the Jetson Nano will no longer be able to boot Jetpack versions < 4.5.
 
@@ -20,10 +20,12 @@ NVIDIA Corp. APX
 
 as a connected device. If it is not in recovery, you will se a different Nvidia device.
 
-3. On a linux machine, navigate to Linux_For_Tegra and use
+3. Download the L4T driver package (BSP) (Linux_For_Tegra) from [Jetson Linux | Nvidia Developer](https://developer.nvidia.com/embedded/linux-tegra)
+
+4. On a linux machine, navigate to Linux_For_Tegra and use
 
 ```sudo ./flash.sh jetson-nano-qspi mmcblk0p1```
 
 If the device is not in recovery mode, the command will fail, therefore when updating many devices, it is not necessary to use lsusb every time.
 
-After the QSPI-NOR is flashed, you can insert and boot Jetpack > 4.5 SD cards.
+After the QSPI-NOR is flashed, you can insert and boot Jetpack ≥ 4.5 SD cards.
