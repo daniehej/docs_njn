@@ -41,9 +41,9 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
     - Download the ARMv8 (arm64) version [Nomachine ARMv8 Download](https://www.nomachine.com/download/download&id=112&s=ARM)
 
-    - scp file to device: `scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.`
+    - (On local machine:) scp file to device: `scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.`
 
-    - Install: `sudo dpkg -i nomachine_7.26_arm64.deb`
+    - (On Jetson Nano:) Install: `sudo dpkg -i nomachine_7.26_arm64.deb`
 
     - Remove: `rm -f nomachine_7.26_arm64.deb`
 
