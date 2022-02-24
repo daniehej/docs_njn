@@ -6,11 +6,13 @@ The QSPI bootloader needs to be updated for Jetpack > 4.4 to boot. When using an
 
 After flashing QSPI-NOR, the Jetson Nano will no longer be able to boot Jetpack versions < 4.5.
 
+1. Boot NJN into recovery mode.
+
 In order to flash a Jetson, first put it into recovery mode by shorting the recovery pin on the board to ground while plugging in the power. Then let go of the recovery pin and the Jetson Nano will boot into recovery mode. 
 
 The recovery pin is in the 8-pin pin header J40 in the corner of the board. If the Micro SD side of the Jetson Nano is facing towards you, the pins you need to bridge are ⣿ -> ⣭. The recovery pin is also marked on the bottom of the board as FR.
 
-Connect with Micro-USB (can be done at any time)
+2. Connect with Micro-USB (can be done at any time)
 
 If the Jetson Nano is booted into recovery mode, the command lsusb will return
 
@@ -18,9 +20,9 @@ NVIDIA Corp. APX
 
 as a connected device. If it is not in recovery, you will se a different Nvidia device.
 
-On a linux machine, navigate to Linux_For_Tegra
+3. On a linux machine, navigate to Linux_For_Tegra and use
 
-sudo ./flash.sh jetson-nano-qspi mmcblk0p1
+```sudo ./flash.sh jetson-nano-qspi mmcblk0p1```
 
 If the device is not in recovery mode, the command will fail, therefore when updating many devices, it is not necessary to use lsusb every time.
 
