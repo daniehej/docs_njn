@@ -84,7 +84,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 13. Add scripts for Nomachine configuration
 
-    ```
+    ```bash
     vim headless_mode.sh
 
     #!/bin/bash
@@ -102,7 +102,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
 
 14. Increase swap space.
-    ```
+    ```bash
     # Disable ZRAM:
     sudo systemctl disable nvzramconfig
     # Create 8GB swap file
@@ -118,7 +118,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     (is it necessary to compile opencv?)
 
     1. Pytorch, Tensorflow from Nvidia
-    ```
+    ```bash
     wget https://nvidia.box.com/shared/static/h1z9sw4bb1ybi0rm3tu8qdj8hs05ljbm.whl -O torch-1.9.0-cp36-cp36m-linux_aarch64.whl
     sudo apt-get install python3-pip libopenblas-base libopenmpi-dev 
     pip3 install Cython
@@ -126,7 +126,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     2. Torchvision
-    ```
+    ```bash
     sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev
     git clone --branch release/0.10 https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
     cd torchvision
@@ -136,7 +136,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
 
     3. Torchaudio:
-    ```
+    ```bash
     git clone --branch release/0.9 https://github.com/pytorch/audio torchaudio
     cd torchaudio
     pip3 install pkgtools
@@ -147,7 +147,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     4. Tensorflow
-    ```
+    ```bash
     sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran
     pip3 install -U pip testresources setuptools
     pip3 install wheel
@@ -162,7 +162,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
     5. Numba
     First install llvm, then llvmlite. Also compile and install the updated version of tbb. Then numba can be installed.
-    ```
+    ```bash
     wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.1/clang+llvm-10.0.1-aarch64-linux-gnu.tar.xz
     tar -xvf clang+llvm-10.0.1-aarch64-linux-gnu.tar.xz
     cd clang+llvm-10.0.1-aarch64-linux-gnu
@@ -187,7 +187,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     6. Easy to install packages:
-    ```
+    ```bash
     pip3 install sklearn
     pip3 install librosa
     pip3 install onnx
@@ -195,7 +195,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     7. Install Jupyter Lab
-    ```
+    ```bash
     curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
     sudo apt install -y nodejs
     pip3 install jupyter jupyterlab
