@@ -38,19 +38,25 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 7. Install nomachine
 
     - Download [local](https://www.nomachine.com/download/download&id=111&s=ARM)
+
     - scp file to device: `scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.`
+
     - Install: `sudo dpkg -i nomachine_7.26_arm64.deb`
+
     - Remove: `rm -f nomachine_7.26_arm64.deb`
 
 8. Connect with nomachine
+
     - Install client [Nomachine client](https://www.nomachine.com/download/linux&id=1)
+
     - Connect to `192.168.55.1`
 
 9. Add Danish keyboard and adjust time zone
 
     - Press EN in top right corner -> Text Entry Setting -> + -> Danish -> Close
+
     - Press clock in top right corner -> Time & Date Settings -> Click Copenhagen
-  
+
 10. Install jetson-inference
 
     - Follow the steps [here](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md). Use default values but add pytorch for python3.
@@ -60,9 +66,11 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     `sudo chmod 644 /usr/bin/gnome-keyring-daemon`
 
     The reason is that we should not store passwords on a system with known password.
-   
+
 12. Change USB Information.
+
     - Follow these steps.
+
     ```text
     cd /opt/nvidia/l4t-usb-device-mode/
     sudo ./nv-l4t-usb-device-mode-runtime-stop.sh
@@ -84,24 +92,24 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 13. Add scripts for Nomachine configuration
 
-    ```bash
-    vim headless_mode.sh
+    `vim headless_mode.sh`
 
+    ```
     #!/bin/bash
-
     exec sed -i '/CreateDisplay/s/ .*/ 1/' /usr/NX/etc/server.cfg
-    
-    vim screenshare_mode.sh
-    
-    #!/bin/bash
+    ```
 
+    `vim screenshare_mode.sh`
+
+    ```
+    #!/bin/bash
     exec sed -i '/CreateDisplay/s/ .*/ 0/' /usr/NX/etc/server.cfg
-    
     chmod +x headless_mode.sh
     chmod +x screenshare_mode.sh
     ```
 
 14. Increase swap space.
+
     ```bash
     # Disable ZRAM:
     sudo systemctl disable nvzramconfig
@@ -118,6 +126,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     (is it necessary to compile opencv?)
 
     1. Pytorch, Tensorflow from Nvidia
+
     ```bash
     wget https://nvidia.box.com/shared/static/h1z9sw4bb1ybi0rm3tu8qdj8hs05ljbm.whl -O torch-1.9.0-cp36-cp36m-linux_aarch64.whl
     sudo apt-get install python3-pip libopenblas-base libopenmpi-dev 
@@ -126,6 +135,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     2. Torchvision
+
     ```bash
     sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev
     git clone --branch release/0.10 https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
@@ -136,6 +146,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
 
     3. Torchaudio:
+
     ```bash
     git clone --branch release/0.9 https://github.com/pytorch/audio torchaudio
     cd torchaudio
@@ -147,6 +158,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     4. Tensorflow
+
     ```bash
     sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran
     pip3 install -U pip testresources setuptools
@@ -161,7 +173,9 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
 
     5. Numba
-    First install llvm, then llvmlite. Also compile and install the updated version of tbb. Then numba can be installed.
+
+        First install llvm, then llvmlite. Also compile and install the updated version of tbb. Then numba can be installed.
+
     ```bash
     wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.1/clang+llvm-10.0.1-aarch64-linux-gnu.tar.xz
     tar -xvf clang+llvm-10.0.1-aarch64-linux-gnu.tar.xz
@@ -187,6 +201,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     6. Easy to install packages:
+
     ```bash
     pip3 install sklearn
     pip3 install librosa
@@ -195,13 +210,14 @@ Guide to creating an image with various preinstalled packages for use in AAU.
     ```
     
     7. Install Jupyter Lab
+
     ```bash
     curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
     sudo apt install -y nodejs
     pip3 install jupyter jupyterlab
     ```
 
-12. Shutdown: sudo shutdown
+12. Shutdown: `sudo shutdown`
 
 13. Remove power and insert SD card in desktop/laptop.
 
