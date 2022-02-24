@@ -7,67 +7,84 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
 2. Use BalenaEtcher to flash the image, see e.g. these [instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write). Flash and verify card.
 
-3. Add cables including Ethernet cable for installing. Insert into NJN and start-up. After some you should see a USB device popping up. If not, remove and re-insert USB cable.
+3. Add cables including Ethernet cable for installing. Insert into NJN and start-up. 
+
+    After some time, you should see a USB device popping up. If not, remove and re-insert USB cable.
 
 4. Setup the Nano in headless mode. Connect via TTY
-    screen /dev/TTYACM0 15200
 
-    Follow the setup. If the TTY does not connect, reboot by removing and reinserting power, and try to connect to the TTY as soon as the L4T-README USB device shows up.
+    1. `screen /dev/TTYACM0 15200`
+
+    2. Follow the setup. If the TTY does not connect, reboot by removing and reinserting power, and try to connect to the TTY as soon as the L4T-README USB device shows up.
     
-    User: AAU Nano
-    username: aaunano
-    password: aaunano
-    hostname: aaunano
-    locale: Denmark, base on English (UK)
-    network: Choose Ethernet or wifi depending on your setup. Not important for later.
+        Enter the following information in the setup:
+
+        ```text
+        User: AAU Nano
+        username: aaunano
+        password: aaunano
+        hostname: aaunano
+        locale: Denmark, base on English (UK)
+        network: Choose Ethernet or wifi depending on your setup. Not important for later.
+        ```
     
 5. Update. There is a default Ubuntu process that locks the package manager and does an update and upgrade, but after a bit of time it's possible to continue
 
-sudo apt update
-sudo apt upgrade
+    ```text
+    sudo apt update
+    sudo apt upgrade
+    ```
 
 7. Install nomachine
-  1. Download [local](https://www.nomachine.com/download/download&id=111&s=ARM)
-  2. scp file to device: scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.
-  3. Install: sudo dpkg -i nomachine_7.26_arm64.deb
-  4. Remove: rm -f nomachine_7.26_arm64.deb
+
+    - Download [local](https://www.nomachine.com/download/download&id=111&s=ARM)
+    - scp file to device: `scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.`
+    - Install: `sudo dpkg -i nomachine_7.26_arm64.deb`
+    - Remove: `rm -f nomachine_7.26_arm64.deb`
 
 8. Connect with nomachine
-  1: Install client [here](https://www.nomachine.com/download/linux&id=1)
-  2: Connect to 192.168.55.1
+    - Install client [Nomachine client](https://www.nomachine.com/download/linux&id=1)
+    - Connect to `192.168.55.1`
 
 9. Add Danish keyboard and adjust time zone
-  1. Press EN in top right corner -> Text Entry Setting -> + -> Danish -> Close
-  2. Press clock in top right corner -> Time & Date Settings -> Click Copenhagen
+
+    - Press EN in top right corner -> Text Entry Setting -> + -> Danish -> Close
+    - Press clock in top right corner -> Time & Date Settings -> Click Copenhagen
   
 10. Install jetson-inference
-  1. Follow the steps [here](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md). Use default values but add pytorch for python3.
+
+    - Follow the steps [here](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md). Use default values but add pytorch for python3.
 
 11. Prevent keyring daemon from starting:
 
-   sudo chmod 644 /usr/bin/gnome-keyring-daemon
+    `sudo chmod 644 /usr/bin/gnome-keyring-daemon`
 
-   The reason is that we should not store passwords on a system with known password.
+    The reason is that we should not store passwords on a system with known password.
    
 12. Change USB Information.
-    1. Follow these steps.
+    - Follow these steps.
+    ```text
     cd /opt/nvidia/l4t-usb-device-mode/
     sudo ./nv-l4t-usb-device-mode-runtime-stop.sh
     sudo mkdir /media/aaunano/img
     sudo mount -o filesystem.img /media/aaunano/img
-    
+    ```
+
     Open "Disks", click on the cog, "Edit Filesystem", enter new Volume name "AAU-README".
     
     Edit the files
-    
+    ```
     sudo ./nv-l4t-usb-device-mode-start.sh
-    
+    ```
     Modify shortcut on desktop.
+
     Right-click on L4T-README, click "Properties"
-    Change "command" to "nautilus /media/aaunano/AAU-README"
+
+    Change "command" to `nautilus /media/aaunano/AAU-README`
 
 13. Add scripts for Nomachine configuration
 
+    ```
     vim headless_mode.sh
 
     #!/bin/bash
@@ -82,8 +99,10 @@ sudo apt upgrade
     
     chmod +x headless_mode.sh
     chmod +x screenshare_mode.sh
+    ```
 
 14. Increase swap space.
+    ```
     # Disable ZRAM:
     sudo systemctl disable nvzramconfig
     # Create 8GB swap file
@@ -92,25 +111,32 @@ sudo apt upgrade
     sudo mkswap /var/tmp/swap.img
     
     sudo sh -c "echo /var/tmp/swap.img none swap defaults 0 0 >>/etc/fstab"
+    ```
 
 15. Install libraries and programs.
-    (is it necessary to compile opencv?)
-    Pytorch, Tensorflow from Nvidia
 
+    (is it necessary to compile opencv?)
+
+    1. Pytorch, Tensorflow from Nvidia
+    ```
     wget https://nvidia.box.com/shared/static/h1z9sw4bb1ybi0rm3tu8qdj8hs05ljbm.whl -O torch-1.9.0-cp36-cp36m-linux_aarch64.whl
     sudo apt-get install python3-pip libopenblas-base libopenmpi-dev 
     pip3 install Cython
     pip3 install numpy torch-1.8.0-cp36-cp36m-linux_aarch64.whl
+    ```
     
-    torchvision:
+    2. Torchvision
+    ```
     sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev
     git clone --branch release/0.10 https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
     cd torchvision
     export BUILD_VERSION=0.10.0
     python3 setup.py install --user
     cd ..  # attempting to load torchvision from build dir will result in import error
-    
-    torchaudio:
+    ```
+
+    3. Torchaudio:
+    ```
     git clone --branch release/0.9 https://github.com/pytorch/audio torchaudio
     cd torchaudio
     pip3 install pkgtools
@@ -118,13 +144,13 @@ sudo apt upgrade
     git submodule update --init --recursive
     export CUDACXX=/usr/local/cuda-10.2/bin/nvcc
     BUILD_SOX=1 python3 setup.py install --user
+    ```
     
-    
-    Tensorflow
+    4. Tensorflow
+    ```
     sudo apt-get install libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran
     pip3 install -U pip testresources setuptools
     pip3 install wheel
-    
     
     pip3 install six
     pip3 install protobuf
@@ -132,9 +158,11 @@ sudo apt upgrade
     
     pip3 install future mock h5py==2.10.0 keras_preprocessing keras_applications gast futures # Tested with newest versions 2021-08-13, only h5py needs old version.
     pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v46 tensorflow
+    ```
 
-    numba
+    5. Numba
     First install llvm, then llvmlite. Also compile and install the updated version of tbb. Then numba can be installed.
+    ```
     wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.1/clang+llvm-10.0.1-aarch64-linux-gnu.tar.xz
     tar -xvf clang+llvm-10.0.1-aarch64-linux-gnu.tar.xz
     cd clang+llvm-10.0.1-aarch64-linux-gnu
@@ -156,32 +184,34 @@ sudo apt upgrade
     pip3 install numba
     pip3 install --upgrade scipy
     pip3 install --upgrade pandas
+    ```
     
-    Easy to install packages:
+    6. Easy to install packages:
+    ```
     pip3 install sklearn
     pip3 install librosa
     pip3 install onnx
     pip3 install cupy #(works but takes a long time)
+    ```
     
-    Install Jupyter Lab
+    7. Install Jupyter Lab
+    ```
     curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
     sudo apt install -y nodejs
     pip3 install jupyter jupyterlab
-
-
-
-
+    ```
 
 12. Shutdown: sudo shutdown
 
 13. Remove power and insert SD card in desktop/laptop.
 
 14. Copy SD card
-  1: Open gnome-disk or Disks from search menu in Ubuntu
-  2: Click menu in top right of window -> Create Disk Image
 
-  or alternatively something like
+    1. Open gnome-disk or Disks from search menu in Ubuntu
+    2. Click menu in top right of window -> Create Disk Image
 
-  sudo dd if=/dev/sda of=AAUNANO-B.img
+    or alternatively something like
+
+    `sudo dd if=/dev/sda of=AAUNANO-B.img`
   
 
