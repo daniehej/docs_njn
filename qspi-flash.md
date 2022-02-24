@@ -26,6 +26,8 @@ as a connected device. If it is not in recovery, you will se a different Nvidia 
 
 ```sudo ./flash.sh jetson-nano-qspi mmcblk0p1```
 
+This takes ~170 seconds.
+
 If the device is not in recovery mode, the command will fail, therefore when updating many devices, it is not necessary to use lsusb every time.
 
 After the QSPI-NOR is flashed, you can insert and boot Jetpack ≥ 4.5 SD cards.
