@@ -7,7 +7,7 @@ For the main documentation of Nvidia Jetson Nano at AAU and tips for getting sta
 ## Contents
 
 ### [QSPI-NOR Flashing Guide](qspi-flash.md)
-Guide to flashing QSPI-NOR in order to boot JetPack ≥ 4.5.
+Guide to flashing QSPI-NOR in order to use ready-made JetPack ≥ 4.5 images.
 
 ### [AAU Image Recipe](image-recipe.md)
 Guide to creating an image with various preinstalled packages for use in AAU.
