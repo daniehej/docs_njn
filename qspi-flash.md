@@ -14,7 +14,7 @@ The recovery pin is in the 8-pin pin header J40 in the corner of the board. If t
 
 2. Connect with Micro-USB (can be done at any time)
 
-If the Jetson Nano is booted into recovery mode, the command lsusb will return
+If the Jetson Nano is booted into recovery mode, the command `lsusb` will return
 
 NVIDIA Corp. APX
 
