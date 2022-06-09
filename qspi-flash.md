@@ -20,7 +20,7 @@ NVIDIA Corp. APX
 
 as a connected device. If it is not in recovery, you will se a different Nvidia device.
 
-3. Download the L4T driver package (BSP) (Linux_For_Tegra) from [Jetson Linux | Nvidia Developer](https://developer.nvidia.com/embedded/linux-tegra)
+3. Download the L4T driver package (BSP) (Linux_For_Tegra) from [Jetson Linux | Nvidia Developer](https://developer.nvidia.com/embedded/linux-tegra-r3272)
 
 4. On a linux machine, navigate to Linux_For_Tegra and use
 
