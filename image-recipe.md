@@ -39,7 +39,7 @@ Guide to creating an image with various preinstalled packages for use in AAU.
 
     Note: Replace version in commands with the most recent version.
 
-    - Download the ARMv8 (arm64) version [Nomachine ARMv8 Download](https://www.nomachine.com/download/download&id=112&s=ARM)
+    - Download the ARMv8 (arm64) deb version [Nomachine ARMv8 Download](https://www.nomachine.com/download/linux&id=30&s=ARM)
 
     - (On local machine:) scp file to device: `scp nomachine_7.26_arm64.deb aaunano@192.168.55.1:.`
 
