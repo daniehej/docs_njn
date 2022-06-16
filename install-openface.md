@@ -2,7 +2,7 @@
 
 [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) is a toolkit for facial behavior analysis such as detecting head pose and eye gaze tracking.
 
-OpenFace is not pre-compiled for ARM, so we have to compile it manually. This involves a couple of steps, which combine the [Unix installation Guide](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation) and [This issue](https://github.com/TadasBaltrusaitis/OpenFace/issues/714).
+OpenFace is not pre-compiled for ARM on Jetson Nano, so we have to compile it manually. This involves a couple of steps, which combine the [Unix installation Guide](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation) and [This issue](https://github.com/TadasBaltrusaitis/OpenFace/issues/714).
 
 1. First follow the steps in the [Unix installation Guide](https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation)
 
