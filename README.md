@@ -4,6 +4,8 @@ Documentation and useful links for Nvidia Jetson Nano
 
 For the main documentation of Nvidia Jetson Nano at AAU and tips for getting started see https://www.claaudia.aau.dk/platforms-tools/nvidiajetson/Documentation/.
 
+Original version at https://git.its.aau.dk/WW82ZE/docs_njn
+
 ## Contents
 
 ### [QSPI-NOR Flashing Guide](qspi-flash.md)
